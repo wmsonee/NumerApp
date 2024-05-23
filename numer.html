@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сумма цифр даты рождения</title>
+    <style>
+        #birthdate {
+            width: 200px;
+            padding: 5px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Сумма цифр даты рождения</h1>
+    <label for="birthdate">Введите дату рождения (дд.мм.гггг):</label>
+    <input type="text" id="birthdate" maxlength="10" placeholder="дд.мм.гггг" oninput="applyDateMask(this)">
+    <button onclick="calculateSum()">Рассчитать</button>
+    <p id="result"></p>
+
+    <script>
+        function applyDateMask(input) {
+            let value = input.value.replace(/\D/g, ''); // Убираем все нецифровые символы
+            if (value.length > 2) {
+                value = value.slice(0, 2) + '.' + value.slice(2);
+            }
+            if (value.length > 5) {
+                value = value.slice(0, 5) + '.' + value.slice(5);
+            }
+            input.value = value;
+        }
+
+        function calculateSum() {
+            const birthdate = document.getElementById('birthdate').value;
+            const digits = birthdate.replace(/\D/g, ''); // Убираем все символы кроме цифр
+            let sum = 0;
+
+            for (let i = 0; i < digits.length; i++) {
+                sum += parseInt(digits[i], 10);
+            }
+
+            // Повторяем процесс, пока сумма не станет однозначным числом
+            while (sum > 9) {
+                sum = sum.toString().split('').reduce((acc, num) => acc + parseInt(num, 10), 0);
+            }
+
+            document.getElementById('result').textContent = 'Сумма цифр: ' + sum;
+        }
+    </script>
+</body>
+</html>
