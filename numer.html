@@ -38,7 +38,7 @@
 <body data-theme="">
     <h1>Сумма цифр даты рождения</h1>
     <label for="birthdate">Введите дату рождения (дд.мм.гггг):</label>
-    <input type="text" id="birthdate" maxlength="10" placeholder="дд.мм.гггг" oninput="applyDateMask(this)">
+    <input type="text" id="birthdate" maxlength="10" placeholder="дд.мм.гггг" oninput="applyDateMask(this)" onkeydown="handleKeyDown(event)">
     <button onclick="calculateSum()">Рассчитать</button>
     <p id="result"></p>
     <button class="theme-toggle" onclick="toggleTheme()">Переключить тему</button>
@@ -82,6 +82,12 @@
         function loadTheme() {
             const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : '');
             document.body.setAttribute('data-theme', savedTheme);
+        }
+
+        function handleKeyDown(event) {
+            if (event.key === 'Enter') {
+                calculateSum();
+            }
         }
 
         loadTheme();
