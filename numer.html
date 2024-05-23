@@ -67,7 +67,7 @@
 <body data-theme="">
     <label class="birthdate_label" for="birthdate">Введите дату рождения (дд.мм.гггг):</label>
     <br>
-    <input type="text" id="birthdate" maxlength="10" placeholder="дд.мм.гггг" oninput="applyDateMask(this)" onkeydown="handleKeyDown(event)">
+    <input type="tel" inputmode="numeric" id="birthdate" maxlength="10" placeholder="дд.мм.гггг" oninput="applyDateMask(this)" onkeydown="handleKeyDown(event)">
     <br>
     <button class="calc_btn" onclick="calculateSum()">Рассчитать</button>
     <p id="result"></p>
