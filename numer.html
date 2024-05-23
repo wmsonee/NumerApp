@@ -33,15 +33,25 @@
             padding: 10px 20px;
             cursor: pointer;
         }
+        .calc_btn {
+            width: 100%;
+            background-color: rgb(27, 226, 83);
+            color: #ffffff;
+            font-size: 14px;
+            border: none;
+            border-radius: 3px;
+            height: 50px;
+        }
     </style>
 </head>
 <body data-theme="">
     <h1>Сумма цифр даты рождения</h1>
     <label for="birthdate">Введите дату рождения (дд.мм.гггг):</label>
     <input type="text" id="birthdate" maxlength="10" placeholder="дд.мм.гггг" oninput="applyDateMask(this)" onkeydown="handleKeyDown(event)">
-    <button onclick="calculateSum()">Рассчитать</button>
+    <br>
+    <button class="calc_btn" onclick="calculateSum()">Рассчитать</button>
     <p id="result"></p>
-    <button class="theme-toggle" onclick="toggleTheme()">Переключить тему</button>
+    <button class="theme-toggle" onclick="toggleTheme()">Светлая/Тёмная тема</button>
 
     <script>
         function applyDateMask(input) {
