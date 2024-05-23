@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Сумма цифр даты рождения</title>
+    <title>Калькулятор нумеролога</title>
     <style>
         :root {
             --background-color: #fff;
@@ -42,11 +42,13 @@
             border-radius: 3px;
             height: 50px;
         }
+        .birthdate_label {
+            font-size: 16px;
+        }
     </style>
 </head>
 <body data-theme="">
-    <h1>Сумма цифр даты рождения</h1>
-    <label for="birthdate">Введите дату рождения (дд.мм.гггг):</label>
+    <label class="birthdate_label" for="birthdate">Введите дату рождения (дд.мм.гггг):</label>
     <input type="text" id="birthdate" maxlength="10" placeholder="дд.мм.гггг" oninput="applyDateMask(this)" onkeydown="handleKeyDown(event)">
     <br>
     <button class="calc_btn" onclick="calculateSum()">Рассчитать</button>
