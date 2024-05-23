@@ -5,19 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Сумма цифр даты рождения</title>
     <style>
+        :root {
+            --background-color: #fff;
+            --text-color: #000;
+        }
+
+        [data-theme="dark"] {
+            --background-color: #000;
+            --text-color: #fff;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            font-family: Arial, sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
         #birthdate {
             width: 200px;
             padding: 5px;
             font-size: 16px;
         }
+
+        .theme-toggle {
+            margin-top: 20px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
     </style>
 </head>
-<body>
+<body data-theme="">
     <h1>Сумма цифр даты рождения</h1>
     <label for="birthdate">Введите дату рождения (дд.мм.гггг):</label>
     <input type="text" id="birthdate" maxlength="10" placeholder="дд.мм.гггг" oninput="applyDateMask(this)">
     <button onclick="calculateSum()">Рассчитать</button>
     <p id="result"></p>
+    <button class="theme-toggle" onclick="toggleTheme()">Переключить тему</button>
 
     <script>
         function applyDateMask(input) {
@@ -47,6 +71,20 @@
 
             document.getElementById('result').textContent = 'Сумма цифр: ' + sum;
         }
+
+        function toggleTheme() {
+            const currentTheme = document.body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? '' : 'dark';
+            document.body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        }
+
+        function loadTheme() {
+            const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : '');
+            document.body.setAttribute('data-theme', savedTheme);
+        }
+
+        loadTheme();
     </script>
 </body>
 </html>
