@@ -14,7 +14,17 @@
             --background-color: #000;
             --text-color: #fff;
         }
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        margin: 0;
+        }
 
+        input[type="number"] {
+        -moz-appearance: textfield;
+        }
         body {
             background-color: var(--background-color);
             color: var(--text-color);
@@ -67,7 +77,7 @@
 <body data-theme="">
     <label class="birthdate_label" for="birthdate">Введите дату рождения (дд.мм.гггг):</label>
     <br>
-    <input type="tel" inputmode="numeric" id="birthdate" maxlength="10" placeholder="дд.мм.гггг" oninput="applyDateMask(this)" onkeydown="handleKeyDown(event)">
+    <input type="number" inputmode="numeric" id="birthdate" maxlength="10" placeholder="дд.мм.гггг" oninput="applyDateMask(this)" onkeydown="handleKeyDown(event)">
     <br>
     <button class="calc_btn" onclick="calculateSum()">Рассчитать</button>
     <p id="result"></p>
